@@ -1,0 +1,131 @@
+openapi: 3.0.0
+info:
+  title: Stem
+  description: This is the demo project for stem
+  contact:
+    email: bensong2017@hotmail.com
+  version: '0.0.1'
+servers:
+  - url: http://localhost:9000/api
+    variables: {}
+paths:
+  /config/connector/{id}:
+    get:
+      tags:
+        - config
+      summary: GetConfig
+      description: Get connector config.
+      operationId: GetConfig
+      security:
+        - ca_key: []
+      parameters:
+        - name: id
+          in: path
+          description: Connector Id, e.g. sfexpress.test
+          required: true
+          style: simple
+          explode: false
+          schema:
+            type: string
+        - name: connector
+          in: query
+          description: Connector-self Name
+          required: true
+          style: form
+          explode: false
+          schema:
+            type: string
+        - name: cache
+          in: query
+          description: Cache that customer ID and name is matched.
+            If the value is `disable`, the cache will not be checked
+          required: false
+          style: form
+          explode: false
+          schema:
+            type: string
+      responses:
+        200:
+          description: User ID and Name has been checked successfully.
+          headers: {}
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+        400:
+          description: Invalid input.
+        404:
+          description: id check failed.
+        500:
+          description: id retrieval failed.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+
+  /health:
+    get:
+      tags:
+        - health
+      summary: health
+      operationId: GetHealth
+      responses:
+        200:
+          description: App service health status
+          headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+  /metrics:
+    get:
+      tags:
+        - health
+      summary: metrics
+      operationId: getMetrics
+      responses:
+        "200":
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: App metrics
+        "400":
+          description: Invalid input
+        "401":
+          description: 'Unauthorized: provided apikey is not valid'
+        "500":
+          description: Server error
+
+components:
+  schemas:
+    ApiResponse:
+      title: ApiResponse
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        sub_message:
+          type: string
+          description: error message.
+        data:
+          type: object
+        items:
+          type: array
+          items:
+            type: object
+
+  securitySchemes:
+    ca_key:
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: Authorization
+
+tags:
+  - name: config
+    description: config
+  - name: health
+    description: API for health metrics

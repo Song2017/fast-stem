@@ -1,0 +1,19 @@
+{
+  "app_conf": {
+    "APP_NAME":"CBEC",
+    "APP_TIMEOUT":"5",
+    "APP_MODE":"debug",
+
+    "SECURITY_KEY":"tests"
+  },
+  "redis_conf": {
+    "db":"5",
+    "REDIS_HOST":"r-h.redis.rds.aliyuncs.com:6379",
+    "REDIS_PASS":"pass!"
+  },
+  "pg_conf": {
+    "PG_URI":"postgresql://u:tests@pgm-tests.pg.rds.aliyuncs.com/db",
+    "NAME":"test"
+  }
+}
+eyJhcHBfY29uZiI6eyJBUFBfTkFNRSI6IkNCRUMiLCJBUFBfVElNRU9VVCI6IjUiLCJBUFBfTU9ERSI6ImRlYnVnIiwiU0VDVVJJVFlfS0VZIjoidGVzdHMifSwicmVkaXNfY29uZiI6eyJkYiI6IjUiLCJSRURJU19IT1NUIjoici1oLnJlZGlzLnJkcy5hbGl5dW5jcy5jb206NjM3OSIsIlJFRElTX1BBU1MiOiJwYXNzISJ9LCJwZ19jb25mIjp7IlBHX1VSSSI6InBvc3RncmVzcWw6Ly91OnRlc3RzQHBnbS10ZXN0cy5wZy5yZHMuYWxpeXVuY3MuY29tL2RiIiwiTkFNRSI6InRlc3QifX0K
